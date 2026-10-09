@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Building Maintenance System - Intelligent Facility Management</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ====================================================================
+       PROPTECH TOP BAR
+       ==================================================================== -->
+  <header class="saas-nav-header">
+    <nav class="saas-nav">
+      <div class="saas-brand">
+        <div class="saas-brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18"/>
+            <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/>
+            <path d="M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/>
+          </svg>
+        </div>
+        <div>
+          <div class="saas-brand-title">Smart Building</div>
+          <div class="saas-brand-subtitle">Maintenance System</div>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span class="system-status-indicator" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; color: #059669; background: #ecfdf5; padding: 0.25rem 0.65rem; border-radius: 9999px; border: 1px solid #a7f3d0;">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: #10b981;"></span>
+          Facility Grid Active
+        </span>
+        <a href="login.jsp" class="btn btn-secondary">Sign In</a>
+        <a href="register.jsp" class="btn btn-primary">Get Started</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ====================================================================
+         HERO SECTION WITH TELEMETRY HUD
+         ==================================================================== -->
+    <section class="saas-hero-section">
+      <div>
+        <div class="saas-pill-tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+          Next-Generation PropTech Facility Platform
+        </div>
+
+        <h1 class="saas-hero-title">
+          Smart Operations for <span>Connected Buildings</span>
+        </h1>
+
+        <p class="saas-hero-desc">
+          A smart platform for reporting, tracking and managing building maintenance requests. Connect residents, facility engineers, and building admins through instant telemetry and automated work-orders.
+        </p>
+
+        <div class="saas-hero-ctas">
+          <a href="login.jsp" class="btn btn-primary btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+              <polyline points="10 17 15 12 10 7"/>
+              <line x1="15" y1="12" x2="3" y2="12"/>
+            </svg>
+            Access Facility Console
+          </a>
+          <a href="register.jsp" class="btn btn-secondary btn-lg">
+            Resident Registration &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Live Telemetry HUD Widget -->
+      <div>
+        <div class="hud-card">
+          <div class="hud-header">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></span>
+              <strong style="font-size: 0.8125rem; font-weight: 700; color: #f8fafc;">HORIZON TOWER CENTRAL</strong>
+            </div>
+            <span style="font-size: 0.7rem; color: #94a3b8; font-family: monospace;">TELEMETRY v2.4</span>
+          </div>
+
+          <div class="hud-body">
+            <div class="hud-metrics-row">
+              <div class="hud-metric-tile">
+                <div class="hud-tile-label">HVAC Efficiency</div>
+                <div class="hud-tile-value" style="color: #38bdf8;">99.4%</div>
+              </div>
+              <div class="hud-metric-tile">
+                <div class="hud-tile-label">Water Pressure</div>
+                <div class="hud-tile-value" style="color: #34d399;">4.2 Bar</div>
+              </div>
+              <div class="hud-metric-tile">
+                <div class="hud-tile-label">Elevator Fleet</div>
+                <div class="hud-tile-value" style="color: #fbbf24;">4/4 Ready</div>
+              </div>
+            </div>
+
+            <!-- Recent Telemetry Tickets -->
+            <div style="font-size: 0.725rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; margin-bottom: 8px;">
+              Live Maintenance Stream
+            </div>
+
+            <div class="hud-feed">
+              <div class="hud-feed-row">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="unit-pill" style="background:#1e293b; color:#93c5fd; border-color:#334155;">Apt 402</span>
+                  <span style="color: #f1f5f9;">Kitchen Water Pipe Leakage</span>
+                </div>
+                <span class="status-badge status-pending" style="font-size: 0.65rem; padding: 2px 6px;">PENDING</span>
+              </div>
+
+              <div class="hud-feed-row">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="unit-pill" style="background:#1e293b; color:#93c5fd; border-color:#334155;">Core B</span>
+                  <span style="color: #f1f5f9;">Elevator Door Alignment</span>
+                </div>
+                <span class="status-badge status-in-progress" style="font-size: 0.65rem; padding: 2px 6px;">IN PROGRESS</span>
+              </div>
+
+              <div class="hud-feed-row">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="unit-pill" style="background:#1e293b; color:#93c5fd; border-color:#334155;">Hallway 5</span>
+                  <span style="color: #f1f5f9;">LED Lighting Grid Replaced</span>
+                </div>
+                <span class="status-badge status-completed" style="font-size: 0.65rem; padding: 2px 6px;">COMPLETED</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         BENTO GRID PLATFORM CAPABILITIES
+         ==================================================================== -->
+    <section class="bento-section">
+      <div class="bento-container">
+        <div class="bento-header">
+          <h2>Engineered for High-Rise Operations</h2>
+          <p>Deliver rapid resolution, transparent resident communication, and enterprise-grade facility oversight.</p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Card 1 -->
+          <div class="bento-card">
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="12" y1="18" x2="12" y2="12"/>
+                <line x1="9" y1="15" x2="15" y2="15"/>
+              </svg>
+            </div>
+            <h3>Easy Maintenance Reporting</h3>
+            <p>Residents submit tickets with smart categorization for Electrical, Plumbing, HVAC, Elevators, and Cleaning in under 30 seconds.</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bento-card">
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <h3>Request Tracking</h3>
+            <p>Real-time ticket ledger with historical logs, timestamps, technician notes, and status progression transparency.</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bento-card">
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3>Admin Management</h3>
+            <p>Supervise technician dispatches, monitor building zones, review resident registries, and optimize facility budgets.</p>
+          </div>
+
+          <!-- Card 4 (Wide) -->
+          <div class="bento-card bento-card-wide">
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <h3>Real-Time Status Updates</h3>
+            <p>Structured 3-tier lifecycle: <strong>PENDING &rarr; IN PROGRESS &rarr; COMPLETED</strong>. Visual telemetry pills and animated indicators eliminate resident confusion and phone calls to management.</p>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="bento-card">
+            <div class="bento-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3>Enterprise Tech Stack</h3>
+            <p>Architected for Java Servlets, JSP, Apache Tomcat 9, and MySQL with robust connection pooling and role authentication.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================================================================
+       FOOTER
+       ==================================================================== -->
+  <footer style="background: #090e17; color: #94a3b8; padding: 3rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);">
+    <div style="max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-weight: 700; color: #ffffff;">Smart Building Maintenance System</span>
+        <span>&bull;</span>
+        <span style="font-size: 0.8125rem;">Enterprise PropTech Edition</span>
+      </div>
+      <div style="font-size: 0.8125rem;">
+        &copy; 2026 Smart Building Maintenance System. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

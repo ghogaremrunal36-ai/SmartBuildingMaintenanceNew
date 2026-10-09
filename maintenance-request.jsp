@@ -1,0 +1,240 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.smartbuilding.model.User" %>
+
+<%
+    User user = (User) session.getAttribute("user");
+
+    // Guard route: user must be authenticated
+    if (user == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log Maintenance Incident - Smart Building</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- ====================================================================
+         DARK CONSOLE SIDEBAR
+         ==================================================================== -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M3 21h18"/>
+            <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/>
+            <path d="M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/>
+          </svg>
+        </div>
+        <div class="sidebar-brand-text">
+          <h2>Smart Building</h2>
+          <span>Resident Console</span>
+        </div>
+      </div>
+
+      <div class="sidebar-facility-pill">
+        <span>Assigned Facility:</span>
+        <strong>Horizon Tower</strong>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="user-dashboard.jsp" class="sidebar-link">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Dashboard
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="maintenance-request.jsp" class="sidebar-link active">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Submit Request
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="user-maintenance" class="sidebar-link">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            My Requests
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-brief">
+          <div class="user-avatar">
+            <%= user.getName() != null && user.getName().length() > 0 ? user.getName().substring(0, 1).toUpperCase() : "R" %>
+          </div>
+          <div class="user-details">
+            <div class="user-name"><%= user.getName() %></div>
+            <div class="user-email"><%= user.getEmail() %></div>
+          </div>
+        </div>
+
+        <a href="logout" class="btn btn-secondary btn-block btn-sm" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: #ffffff !important;">
+          Sign Out
+        </a>
+      </div>
+    </aside>
+
+    <!-- ====================================================================
+         MAIN CONTENT AREA
+         ==================================================================== -->
+    <main class="main-content">
+      <header class="top-header">
+        <div class="top-header-left">
+          <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+          <div class="page-title">
+            <h1>Log Maintenance Problem</h1>
+            <p>Dispatch a work order to Horizon Tower facility engineering</p>
+          </div>
+        </div>
+
+        <div class="top-header-right">
+          <a href="user-dashboard.jsp" class="btn btn-secondary btn-sm">&larr; Return to Dashboard</a>
+        </div>
+      </header>
+
+      <div class="content-body">
+        <div class="panel-card" style="max-width: 820px; margin: 0 auto;">
+          <div class="panel-header">
+            <div class="panel-title">
+              <h2>Incident Dispatch Form</h2>
+              <p>Select category and describe the problem symptoms</p>
+            </div>
+            <span class="status-badge status-pending">Initial Status: PENDING</span>
+          </div>
+
+          <div style="padding: 1.75rem;">
+            <% if (request.getAttribute("error") != null) { %>
+              <div class="alert alert-error">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="15" y1="9" x2="9" y2="15"/>
+                  <line x1="9" y1="9" x2="15" y2="15"/>
+                </svg>
+                <%= request.getAttribute("error") %>
+              </div>
+            <% } %>
+
+            <form action="maintenance-request" method="post" data-validate="true">
+              <!-- Visual Category Selector Cards -->
+              <div class="form-group">
+                <label class="form-label">Select Equipment / Subsystem Category *</label>
+                <div class="category-cards-grid">
+                  <div class="category-choice-card" data-value="Electrical">
+                    <div class="category-choice-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <span class="category-choice-label">Electrical</span>
+                  </div>
+
+                  <div class="category-choice-card" data-value="Plumbing">
+                    <div class="category-choice-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                    </div>
+                    <span class="category-choice-label">Plumbing</span>
+                  </div>
+
+                  <div class="category-choice-card" data-value="Air Conditioning">
+                    <div class="category-choice-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/></svg>
+                    </div>
+                    <span class="category-choice-label">HVAC / AC</span>
+                  </div>
+
+                  <div class="category-choice-card" data-value="Lift / Elevator">
+                    <div class="category-choice-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><polyline points="7 10 12 5 17 10"/><polyline points="7 14 12 19 17 14"/></svg>
+                    </div>
+                    <span class="category-choice-label">Elevators</span>
+                  </div>
+
+                  <div class="category-choice-card" data-value="Cleaning">
+                    <div class="category-choice-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <span class="category-choice-label">Cleaning</span>
+                  </div>
+
+                  <div class="category-choice-card" data-value="Other">
+                    <div class="category-choice-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                    <span class="category-choice-label">Other</span>
+                  </div>
+                </div>
+
+                <!-- Native select element bound to Java Servlet -->
+                <select id="category" name="category" class="form-control" required style="margin-top: 0.5rem;">
+                  <option value="">-- Or Select from Dropdown --</option>
+                  <option value="Electrical">Electrical</option>
+                  <option value="Plumbing">Plumbing</option>
+                  <option value="Air Conditioning">Air Conditioning</option>
+                  <option value="Lift / Elevator">Lift / Elevator</option>
+                  <option value="Cleaning">Cleaning</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <!-- Request Title -->
+              <div class="form-group">
+                <label class="form-label" for="title">Request Headline *</label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  class="form-control"
+                  placeholder="e.g. Master bathroom hot water line dripping under sink"
+                  required
+                >
+              </div>
+
+              <!-- Description -->
+              <div class="form-group">
+                <label class="form-label" for="description">Detailed Symptoms &amp; Location *</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  class="form-control"
+                  rows="5"
+                  placeholder="Specify exact location inside unit or common hallway, when the issue began, severity level, or emergency safety concerns..."
+                  required
+                ></textarea>
+                <span class="form-hint">Detailed logs allow maintenance crews to arrive equipped with the right parts on the first visit.</span>
+              </div>
+
+              <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-hairline);">
+                <a href="user-dashboard.jsp" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"/>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                  </svg>
+                  Dispatch Maintenance Ticket
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Work Orders - Smart Building Maintenance</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M3 21h18"/>
+            <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/>
+            <path d="M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/>
+          </svg>
+        </div>
+        <div class="sidebar-brand-text">
+          <h2>Smart Building</h2>
+          <span>Resident Console</span>
+        </div>
+      </div>
+
+      <div class="sidebar-facility-pill">
+        <span>Assigned Facility:</span>
+        <strong>Horizon Tower</strong>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="user-dashboard.html" class="sidebar-link">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Dashboard
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="maintenance-request.html" class="sidebar-link">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Submit Request
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="user-maintenance.html" class="sidebar-link active">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            My Requests
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user-brief">
+          <div class="user-avatar">J</div>
+          <div class="user-details">
+            <div class="user-name">John Doe (Apt 402)</div>
+            <div class="user-email">john@gmail.com</div>
+          </div>
+        </div>
+
+        <a href="login.html" class="btn btn-secondary btn-block btn-sm" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: #ffffff !important;">
+          Sign Out
+        </a>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <div class="top-header-left">
+          <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+          <div class="page-title">
+            <h1>My Maintenance Work Orders</h1>
+            <p>Real-time telemetry tracking for your reported incidents</p>
+          </div>
+        </div>
+
+        <div class="top-header-right">
+          <a href="maintenance-request.html" class="btn btn-primary btn-sm">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            New Request
+          </a>
+        </div>
+      </header>
+
+      <div class="content-body">
+        <div class="filter-toolbar">
+          <div class="search-box">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input
+              type="text"
+              id="tableSearchInput"
+              class="form-control"
+              placeholder="Search by ticket code, title, or category..."
+            >
+          </div>
+
+          <div class="filter-group">
+            <button type="button" class="filter-btn active" data-filter="ALL">All Orders (4)</button>
+            <button type="button" class="filter-btn" data-filter="PENDING">Pending</button>
+            <button type="button" class="filter-btn" data-filter="IN PROGRESS">In Progress</button>
+            <button type="button" class="filter-btn" data-filter="COMPLETED">Completed</button>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Ticket</th>
+                  <th>Incident Title</th>
+                  <th>Category</th>
+                  <th>Symptoms / Location</th>
+                  <th>Current Status</th>
+                  <th>Logged Timestamp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="ticket-code">#TK-101</span></td>
+                  <td><strong>Water Leakage Under Kitchen Sink</strong></td>
+                  <td><span class="category-badge">Plumbing</span></td>
+                  <td><div class="table-desc-text">Persistent pipe drip causing water pooling under the cabinet in apartment 402.</div></td>
+                  <td><span class="status-badge status-pending">PENDING</span></td>
+                  <td style="white-space: nowrap; color: var(--text-muted); font-size: 0.8125rem;">2026-09-19 11:30</td>
+                </tr>
+                <tr>
+                  <td><span class="ticket-code">#TK-098</span></td>
+                  <td><strong>Flickering Corridor Light</strong></td>
+                  <td><span class="category-badge">Electrical</span></td>
+                  <td><div class="table-desc-text">Main ceiling LED panel in unit hallway is flickering intermittently.</div></td>
+                  <td><span class="status-badge status-in-progress">IN PROGRESS</span></td>
+                  <td style="white-space: nowrap; color: var(--text-muted); font-size: 0.8125rem;">2026-09-17 14:15</td>
+                </tr>
+                <tr>
+                  <td><span class="ticket-code">#TK-084</span></td>
+                  <td><strong>Intercom Buzzer Replacement</strong></td>
+                  <td><span class="category-badge">Electrical</span></td>
+                  <td><div class="table-desc-text">Audio works fine but buzzer chime does not ring when visitors call.</div></td>
+                  <td><span class="status-badge status-completed">COMPLETED</span></td>
+                  <td style="white-space: nowrap; color: var(--text-muted); font-size: 0.8125rem;">2026-09-10 09:40</td>
+                </tr>
+                <tr>
+                  <td><span class="ticket-code">#TK-067</span></td>
+                  <td><strong>Bathroom Vent Fan Motor Squeak</strong></td>
+                  <td><span class="category-badge">Cleaning</span></td>
+                  <td><div class="table-desc-text">Exhaust fan cleaned and bearing lubricated by maintenance team.</div></td>
+                  <td><span class="status-badge status-completed">COMPLETED</span></td>
+                  <td style="white-space: nowrap; color: var(--text-muted); font-size: 0.8125rem;">2026-08-28 16:00</td>
+                </tr>
+                <tr class="filter-empty-row" style="display: none;">
+                  <td colspan="6">
+                    <div class="empty-state" style="padding: 2rem;">
+                      <p>No maintenance tickets match your search criteria.</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>
